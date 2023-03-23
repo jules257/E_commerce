@@ -41,8 +41,21 @@ function ready(){
 
 
     }
+//    buy button work
+document
+.getElementsByClassName('btn-buy')[0]
+.addEventListener('click',buyButtonClicked); 
 
 
+}
+// buy button
+function buyButtonClicked() {
+alert('your Order is placed');
+var cartContent = document.getElementsByClassName('cart-content')[0];
+while (cartContent.hasChildNodes()){
+    cartContent.removeChild(cartContent.firstChild);
+}
+updatetotal();    
 }
 
 // reomve items from cart
@@ -92,13 +105,13 @@ for (var i = 0; i < cartItemsNames.length; i++){
 }
 
 
-var cartBoxContent = `<img src="img/shirt.jpg" alt="" class="cart-img">
+var cartBoxContent = `<img src="${productImg}" alt="" class="cart-img">
                 <div class="detail-box">
                     <div class="cart-product-title">
-                        shirt
+                        ${title}
                     </div>
                     <div class="cart-price">
-                        $25
+                        ${price}
                     </div>
                     <input type="number" value="1" class="cart-quantity" id="">
                 </div>
@@ -132,12 +145,13 @@ for (var i =0; i < cartBoxes.length; i++){
     var price = parseFloat(priceElement.innerText.replace("$",""));
     var quantity = quantityElement.value;
     total = total + (price * quantity);
+
     // if price contain some cents value
     total = Math.round(total * 100) / 100;
 
     document.getElementsByClassName('total-price')[0].innerText = "$" + total;
-}
 
+}
 
 
 }
